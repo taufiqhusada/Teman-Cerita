@@ -1,10 +1,10 @@
-## Teman Cerita ##
+# Teman Cerita #
 
-# Description #
+## Description ##
 Personal Project 
-App that enables people to share their story with the others
+Web that enables people to share their story with the others
 
-# How to execut #
+## How to run the app ##
 1. open cmd
 2. go to the directory
 3. write "node app"
