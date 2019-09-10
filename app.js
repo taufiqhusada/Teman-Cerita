@@ -5,10 +5,13 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
+
 require('dotenv').config();
 
 const app = express();
 
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 // Passport Config
 require('./config/passport')(passport);
@@ -56,6 +59,23 @@ app.use(function(req, res, next) {
   next();
 });
 
+io.sockets.on('connection', function(socket) {
+  socket.on('username', function(username) {
+      socket.username = username;
+      io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
+  });
+
+  socket.on('disconnect', function(username) {
+      io.emit('is_online', '🔴 <i>' + socket.username + ' left the chat..</i>');
+  })
+
+  socket.on('chat_message', function(message) {
+      io.emit('chat_message', '<strong>' + socket.username + '</strong>: ' + message);
+  });
+
+});
+
+
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
@@ -65,4 +85,8 @@ app.use('/posting', require('./routes/posting.js'));
 const PORT = process.env.PORT || 5000;
 
 // listening
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+const server = http.listen(5000, function() {
+  console.log('listening on *:5000');
+});
+

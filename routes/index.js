@@ -12,4 +12,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
+router.get('/chatGroup', ensureAuthenticated, (req,res) => 
+  res.render('chatGroup')
+);
+
 module.exports = router;
