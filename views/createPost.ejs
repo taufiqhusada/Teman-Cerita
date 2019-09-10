@@ -1,0 +1,85 @@
+<h1>Personal Post</h1>
+
+<h2 class="mt-4">Create Post</h2>
+<h5 class="lead mb-3">Hai <%= user.name %>, Make your posts, freely express yourself</h5> <br>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <form action="/posting/createPost" method="POST">
+            <div class="form-group">
+                <label for="postTitle">Title</label>
+                <input type="text" class="form-control" id="postTitle" placeholder="Post Title" name="postTitle">
+                <br>
+                <label for="postContent">Content</label>
+                <textarea class="form-control" id="postContent" placeholder="Post Content" name="postContent" rows="10" tabindex="4"> </textarea>
+                <br>
+                <button type="submit" class="btn btn-primary">Create</button>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<h2>Your Past Posts </h2> <br>
+
+<div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <ul class="list-group" id="display">
+            
+            </ul>
+        </div>
+        <div class="col-lg-2"></div>
+    </div> 
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"
+></script>
+<script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"
+></script>
+
+<script>
+    const display = $("#display");
+    function getUserPosts(){
+        fetch('/posting/getUserPosts',{method : "get"}).then((response)=>{
+            return response.json();
+        }).then((data)=>{
+            console.log(data);
+            displayPosts(data);
+        });
+    }
+    getUserPosts();
+
+    const buildTemplate = (post,id)=>{
+                return `<li class="list-group-item">
+                      <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="${id}">${post.title}</h5>
+                                <p class="card-text" id="${id}">  ${post.content}</p>
+                                <div class="text-right">
+                                    <form method="get" action = "/posting/delete/${id}"> <button class= "btn btn-primary" type="submit"> Delete</button> </form>
+                                    <br>
+                                    <form method="get" action = "/posting/update/${id}"> <button class= "btn btn-primary" type="submit"> Edit </button> </form>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                       </li>`;           
+            }
+
+    function displayPosts(data){
+        data.forEach((post)=>{
+            display.append(buildTemplate(post,post._id));
+        })
+    }
+</script>

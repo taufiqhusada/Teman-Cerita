@@ -1,0 +1,57 @@
+<h1 class="mt-4" >POSTS</h1> <br>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <ul class="list-group" id="display">
+        
+        </ul>
+    </div>
+    <div class="col-lg-2"></div>
+</div> 
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"
+></script>
+<script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"
+></script>
+<script>
+    const display = $("#display");    
+    function getPosts(){
+        fetch('/posting/getPosts',{method : "get"}).then((response)=>{
+            return response.json();
+        }).then((data)=>{
+            console.log(data);
+            displayPosts(data);
+        });
+    }
+    getPosts();
+
+    const buildTemplate = (post,id)=>{
+                return `<div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" id="${id}">${post.title}</h5>
+                                <p class="card-text" id="${id}">  ${post.content}</p>
+                                <p class ="card-text" id="${id}" style="text-align:right;">created by: ${post.userName}</p>
+                                <p class ="card-text" id="${id}" style="text-align:right;">posted on: ${post.datePosted}</p>
+                            </div>
+                        </div>
+                        <br>`;
+            }
+
+    function displayPosts(data){
+        data.forEach((post)=>{
+            display.append(buildTemplate(post,post._id));
+        })
+    }
+
+</script>
