@@ -8,7 +8,7 @@ Web that enables people to share their story with the others
 ## Detailed Description ##
 This app was built mainly using HTML, CSS, JS, Node.js, Express.js, MongoDB
 
-## What this app can do?##
+## What this app can do? ##
 1. Post something
 2. See personal post
 3. Delete post
