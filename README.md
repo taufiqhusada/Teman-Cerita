@@ -2,8 +2,7 @@
 Author: Taufiq Husada Daryanto / Informatics ITB 2018
 
 ## Description ##
-Personal Project 
-Web that enables people to share their story with the others
+A Web that enables people to share their story with the others
 
 ## Detailed Description ##
 This app was built mainly using HTML, CSS, JS, Node.js, Express.js, MongoDB
