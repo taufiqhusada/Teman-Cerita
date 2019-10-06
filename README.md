@@ -13,8 +13,11 @@ This app was built mainly using HTML, CSS, JS, Node.js, Express.js, MongoDB
 3. Delete post
 4. Chat with all the user as an anonym
 
+## Prerequisites ##
+to get the website started you need to install npm
+
 ## How to run the app ##
-1. open cmd
+1. open terminal
 2. go to the directory
 3. write "node app"
 4. open the localhost with specific address (usually localhost:5000)
