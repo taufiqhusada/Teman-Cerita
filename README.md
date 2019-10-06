@@ -2,7 +2,7 @@
 Author: Taufiq Husada Daryanto / Informatics ITB 2018
 
 ## Description ##
-A Web that enables people to share their story with the others
+Teman Cerita is a website that enables people to share their story with the others.
 
 ## Detailed Description ##
 This app was built mainly using HTML, CSS, JS, Node.js, Express.js, MongoDB
