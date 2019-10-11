@@ -2,7 +2,7 @@
 Author: Taufiq Husada Daryanto / Informatics ITB 2018
 
 ## Description ##
-We Are Here is a website that enables people to share their story with the others.
+We Are Here is a website that enables people to share their story with the others. The reason why I create this platform is that there are many people out of there that have several problems in their lives, and they don't know where to share their feelings. With this platform, I hope that people have a place to share their stories and help each others. 
 
 ## Detailed Description ##
 This app was built mainly using HTML, CSS, JS, Node.js, Express.js, MongoDB
